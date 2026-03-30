@@ -64,7 +64,7 @@ function AdminAlerts() {
     startIndex + alertsPerPage,
   );
   const totalPages = Math.ceil(filteredAlerts.length / alertsPerPage);
-
+console.log("dhanush")
   return (
     <>
       <style>{`
@@ -158,7 +158,8 @@ function AdminAlerts() {
                       lineHeight: 1.1,
                     }}
                   >
-                    Alerts
+                    
+                    Alerts for adim
                   </Typography>
                   <Typography
                     sx={{
