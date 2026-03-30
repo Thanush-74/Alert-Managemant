@@ -65,6 +65,8 @@ function AdminAlerts() {
   );
   const totalPages = Math.ceil(filteredAlerts.length / alertsPerPage);
 console.log("branch practice");
+
+console.log("branch test");
   return (
     <>
       <style>{`
