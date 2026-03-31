@@ -64,7 +64,7 @@ function AdminAlerts() {
     startIndex + alertsPerPage,
   );
   const totalPages = Math.ceil(filteredAlerts.length / alertsPerPage);
-console.log("branch practice");
+console.log("branch practice will updated");
   return (
     <>
       <style>{`
