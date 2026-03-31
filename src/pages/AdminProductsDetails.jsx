@@ -332,7 +332,7 @@ const AdminProductDetails = () => {
             }}
           >
             <FilterListIcon sx={{ fontSize: 16 }} />
-            Filters
+            Filter
           </Typography>
           <Box
             sx={{
