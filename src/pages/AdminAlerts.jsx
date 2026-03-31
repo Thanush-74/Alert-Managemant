@@ -64,7 +64,11 @@ function AdminAlerts() {
     startIndex + alertsPerPage,
   );
   const totalPages = Math.ceil(filteredAlerts.length / alertsPerPage);
-console.log("practice level good");
+
+
+  console.log("test practicing");
+  
+
   return (
     <>
       <style>{`
