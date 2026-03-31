@@ -64,7 +64,10 @@ function AdminAlerts() {
     startIndex + alertsPerPage,
   );
   const totalPages = Math.ceil(filteredAlerts.length / alertsPerPage);
-console.log("branch working now");
+console.log("hello");
+
+
+
   return (
     <>
       <style>{`
