@@ -564,6 +564,8 @@
 
 // export default CustomerHome;
 
+
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import socket from "../services/socket";
@@ -596,6 +598,9 @@ import {
   DialogTitle,
 } from "@mui/material";
 
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../store/cartSlice";
+
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -617,8 +622,10 @@ const pickEmoji = (name = "") => {
 };
 
 function CustomerHome() {
+  const dispatch = useDispatch();
+const cart = useSelector(state => state.cart.items);
   const navigate = useNavigate();
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
   const [branch, setBranch] = useState(null);
   const [message, setMessage] = useState("");
@@ -655,23 +662,23 @@ const confirmLogout = () => {
   handleLogout(); // your existing logout function
 };
   // Persist cart
-  useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem("cart") || "[]"));
-  }, []);
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  // useEffect(() => {
+  //   setCart(JSON.parse(localStorage.getItem("cart") || "[]"));
+  // }, []);
+  // useEffect(() => {
+  //   localStorage.setItem("cart", JSON.stringify(cart));
+  // }, [cart]);
 
-  const addToCart = (product) => {
-    setCart((prev) => {
-      const exist = prev.find((p) => p.id === product.id);
-      if (exist)
-        return prev.map((p) =>
-          p.id === product.id ? { ...p, qty: p.qty + 1 } : p
-        );
-      return [...prev, { ...product, qty: 1 }];
-    });
-  };
+  // const addToCart = (product) => {
+  //   setCart((prev) => {
+  //     const exist = prev.find((p) => p.id === product.id);
+  //     if (exist)
+  //       return prev.map((p) =>
+  //         p.id === product.id ? { ...p, qty: p.qty + 1 } : p
+  //       );
+  //     return [...prev, { ...product, qty: 1 }];
+  //   });
+  // };
 
   const handleLogout = () => {
     localStorage.clear();
@@ -1077,14 +1084,14 @@ const confirmLogout = () => {
         {/* Products Grid */}
         <Grid container spacing={2}>
           {products.map((item) => (
-            <Grid item xs={6} sm={4} md={3} key={item.id}>
+            <Grid item xs={6} sm={4} md={3} key={item.id} >
               <Card
                 elevation={0}
                 sx={{
                   border: "1.5px solid #ede5d4",
                   borderRadius: "20px",
                   overflow: "hidden",
-                  bgcolor: "#fffdf9",
+                  bgcolor: "#fffdf9",        
                   display: "flex",
                   flexDirection: "column",
                   height: "100%",
@@ -1151,7 +1158,8 @@ const confirmLogout = () => {
                   <Button
                     fullWidth
                     variant="outlined"
-                    onClick={() => addToCart(item)}
+                    // onClick={() => addToCart(item)}
+                    onClick={() => dispatch(addToCart(item))}
                     sx={{
                       borderRadius: "12px",
                       border: "1.5px solid #ede5d4",
